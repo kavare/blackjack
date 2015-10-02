@@ -3,7 +3,7 @@
 
   angular
     .module('blackjack')
-    .factory('CardStorage', ['toastr', function(tostr) {
+    .factory('CardStorage', ['toastr', function(toastr) {
 
       /**
        * [CardStorage private attributes]
@@ -68,8 +68,8 @@
         return shuffledDeck;
       }
 
-      function deal() {
-
+      function deal(playerNum) {
+        toastr.info('deal');
       }
 
       function stick() {
