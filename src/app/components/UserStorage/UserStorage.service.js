@@ -32,7 +32,7 @@
 
         playerList.push(currentPlayer);
 
-        for (var i = 1; i < data.playerNum; i++) {
+        for (var i = 0; i < data.playerNum - 1; i++) {
           playerConfig = {};
           playerConfig.name = playerNames[i];
           playerConfig.money = 1000;
@@ -43,6 +43,7 @@
 
         config.playerList = playerList;
 
+        localStorage.clear();
         localStorage.setItem('blackjackConfig', JSON.stringify(config));
         toastr.success('Game Start! You are' + config.playerName + ' in a ' + config.playerNum + ' players game');
       }
