@@ -8,9 +8,29 @@
       <login-form />
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button class="btn btn-success" ng-click="main.shuffle()">Shuffle</button>
+  <div class="jumbotron">
+    <h2>Game {{main.gameCount}}</h2>
+    <button class="btn btn-success" ng-click="main.newGame()">New Game</button>
+    <div class="panel panel-default">
+      <div class="panel-heading">Game Board</div>
+      <table class="table">
+        <tr ng-repeat-start="player in main.players track by $index">
+          <td>{{$index + 1}}</td>
+          <td>{{player.name}}</td>
+          <td>{{player.money}}</td>
+        </tr>
+        <tr ng-repeat-end></tr>
+      </table>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Card board</div>
+      <table class="table">
+        <tr ng-repeat-start="card in main.cards track by $index">
+          <td>{{$index + 1}}</td>
+          <td>{{card}}</td>
+        </tr>
+        <tr ng-repeat-end></tr>
+      </table>
     </div>
   </div>
 </div>
