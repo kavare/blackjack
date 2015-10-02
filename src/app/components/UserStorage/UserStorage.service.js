@@ -22,6 +22,7 @@
         var currentPlayer;
         var player;
 
+        config = {};
         config.playerName = data.playerName;
         config.playerNum = data.playerNum;
 
