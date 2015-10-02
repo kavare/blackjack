@@ -1,0 +1,21 @@
+<form class="login-form clearfix" ng-submit="vm.initGame(vm.formData)">
+  <h1 class="section-title">BlackJack</h1>
+  <div class="form-group">
+    <label class="sr-only" for="playerName">Your Name</label>
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-heart"></span></div>
+      <input type="text" class="form-control" id="playerName" placeholder="Your Name" ng-model="vm.formData.playerName" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="playerNum">Number of Users</label>
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+      <input type="number" class="form-control" id="playerNum" placeholder="Number of Users" ng-model="vm.formData.playerNum" required max="5" min="2" value="2">
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="button" value="Continue last game" class="btn btn-info" ng-click="vm.continueGame()">
+    <input type="submit" value="Start the game" class="btn btn-warning pull-right">
+  </div>
+</form>

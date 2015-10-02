@@ -1,3 +1,13 @@
+$white:                 #FFFFFF !default;
+$black:                 #555555 !default;
+$red:                   #ff0051 !default;
+$orange:                #ffad00 !default;
+$yellow:                #EDBF47 !default;
+$green:                 #90c670 !default;
+$blue:                  #31b1e2 !default;
+$purple:                #C389CE !default;
+$gray:                  #EBEBEB !default;
+
 $brand-primary:         #01a65e !default;
 $brand-success:         #90c670 !default;
 $brand-info:            #31b1e2 !default;
@@ -9,5 +19,7 @@ $text-color:            #333333 !default;
 $link-color:            $brand-info !default;
 $link-hover-color:      darken($link-color, 15%) !default;
 $link-hover-decoration: underline !default;
+
+$input-color:           $black !default;
 
 $navbar-inverse-link-color: #5AADBB;
