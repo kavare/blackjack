@@ -1,0 +1,13 @@
+$brand-primary:         #01a65e !default;
+$brand-success:         #90c670 !default;
+$brand-info:            #31b1e2 !default;
+$brand-warning:         #ffad00 !default;
+$brand-danger:          #ff0051 !default;
+
+$body-bg:               #ffeec7;
+$text-color:            #333333 !default;
+$link-color:            $brand-info !default;
+$link-hover-color:      darken($link-color, 15%) !default;
+$link-hover-decoration: underline !default;
+
+$navbar-inverse-link-color: #5AADBB;
