@@ -1,4 +1,4 @@
-/* global malarkey:false, toastr:false, moment:false */
+/* global malarkey:false, toastr:false */
 (function() {
   'use strict';
 
