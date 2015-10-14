@@ -64,11 +64,12 @@
         this.status = 'new';
         this.bonus = 0;
         this.cards = [];
+        this.points = 0;
       }
 
       Gamer.id = 0;
-      Gamer.prototype.bet = function() {
-
+      Gamer.prototype.bet = function(stack) {
+        this.stack = stack;
       };
 
       Gamer.prototype.stick = function() {

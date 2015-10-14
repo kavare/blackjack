@@ -3,21 +3,21 @@
 
   angular
     .module('blackjack')
-    .factory('Board', ['Player', 'Game', function(Player, Game) {
-      var recordBoard = [];
+    .factory('Board', ['Config', 'Player', function(Config, Player) {
+      var config = Config.getConfig();
+      var recordBoard = config.board || [];
 
       return {
         setRecord: setRecord,
         getRecords: getRecords,
         clearRecords: clearRecords,
         getRecordByPlayer: getRecordByPlayer,
-        getRecordByGame: getRecordByGame,
-        save: save,
-        load: load
+        getRecordByGame: getRecordByGame
       };
 
-      function setRecord() {
-
+      function setRecord(game) {
+        var record = new Record(game);
+        recordBoard.push(record);
       }
 
       function getRecords() {
@@ -36,19 +36,12 @@
 
       }
 
-      function save() {
 
-      }
-
-      function load() {
-
-      }
-
-      function Record(match, game) {
+      function Record(game) {
         this.id = ++Record.id;
-        this.matchId = match.id;
+        this.matchId = config.match.id;
         this.gameId = game.id;
-        this.players = match.players;
+        this.players = Player.getPlayers();
       }
 
       Record.id = 0;
