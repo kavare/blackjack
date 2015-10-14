@@ -11,7 +11,9 @@
         getRecords: getRecords,
         clearRecords: clearRecords,
         getRecordByPlayer: getRecordByPlayer,
-        getRecordByGame: getRecordByGame
+        getRecordByGame: getRecordByGame,
+        save: save,
+        load: load
       };
 
       function setRecord() {
@@ -30,15 +32,26 @@
 
       }
 
-      function getRecordByGameId() {
+      function getRecordByGame() {
 
       }
 
-      function Record(game) {
+      function save() {
+
+      }
+
+      function load() {
+
+      }
+
+      function Record(match, game) {
+        this.id = ++Record.id;
+        this.matchId = match.id;
         this.gameId = game.id;
-        this.gameSeries = game.series;
-        this.players = game.players;
+        this.players = match.players;
       }
+
+      Record.id = 0;
 
     }]);
 })();
