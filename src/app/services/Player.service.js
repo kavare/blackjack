@@ -13,7 +13,8 @@
         remove: remove,
         get: get,
         getPlayers: getPlayers,
-        getNames: getNames
+        getNames: getNames,
+        setPlayers: setPlayers
       };
 
       function create(name, role) {
@@ -49,6 +50,10 @@
 
       function getNames() {
         return nameList;
+      }
+
+      function setPlayers(players) {
+        return playerList = players;
       }
 
       function Gamer(name, role) {

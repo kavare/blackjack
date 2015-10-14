@@ -3,20 +3,23 @@
 
   angular
     .module('blackjack')
-    .factory('BettingSystem', ['Rule', function(Rule) {
+    .factory('BettingSystem', [function() {
       var rules = [];
 
       return {
-        register: regsiter,
+        register: register,
         use: use
       };
 
-      function register() {
-
+      function register(name, func) {
+        var rule = new Rule(name, func);
+        rules.push(rule);
       }
 
       function use() {
-
+        angular.forEach(rules, function(rule) {
+          rule();
+        });
       }
 
       function Rule(name, func) {

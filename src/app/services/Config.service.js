@@ -10,17 +10,19 @@
         getConfig: getConfig,
         setConfig: setConfig,
         setMatch: setMatch,
-        setBoard: setBoard
+        setBoard: setBoard,
+        setPlayers: setPlayers
       };
 
       function getConfig() {
         return config;
       }
 
-      function setConfig(match, board) {
+      function setConfig(match, board, players) {
         config = {};
         config.match = match;
         config.board = board;
+        config.players = players;
         localStorage.setItem('blackjack', JSON.stringify(config));
       }
 
@@ -31,6 +33,11 @@
 
       function setBoard(board) {
         angular.merge(config, board);
+        localStorage.setItem('blackjack', JSON.stringify(config));
+      }
+
+      function setPlayers(players) {
+        angular.merge(config, players);
         localStorage.setItem('blackjack', JSON.stringify(config));
       }
 

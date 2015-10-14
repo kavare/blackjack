@@ -3,19 +3,25 @@
 
   angular
     .module('blackjack')
-    .factory('Match', ['Config', 'System', 'Player', 'Board', 'Card', function(Conig, System, Player, Board, Card) {
+    .factory('Match', ['Config', 'BettingSystem', 'Player', 'Board', 'Card', function(Config, BettingSystem, Player, Board, Card) {
 
-      var matchConfig = {};
-      matchConfig.id = new Date().getTime();
-      matchConfig.games = [];
-      matchConfig.humanName = '';
-      matchConfig.playerNum = 0;
+      var matchConfig = Config.getConfig().match;
+      if (!matchConfig) {
+        matchConfig = {
+          games: [],
+          humanName: '',
+          playerNum: 0,
+          dealer: null
+        };
+
+        matchConfig.id = new Date().getTime();
+      }
 
       return {
         setHuman: setHuman,
         setPlayerNum: setPlayerNum,
         setPlayers: setPlayers,
-        setDealer: setDealer,
+        setdealer: setDealer,
         start: start,
         resume: resume
       };
@@ -33,33 +39,40 @@
         var i;
         Player.create(matchConfig.humanName, 'human');
 
-        for (i = 1; i < playerNum; i++) {
+        for (i = 1; i < matchConfig.playerNum; i++) {
           Player.create(name[i-1], 'computer');
         }
       }
 
-      function setDealer(id) {
+      function setDealer() {
         var players = Player.getPlayers();
+        var dealerId = matchConfig.dealer || Math.ceil(Math.random() * 4);
 
         angular.forEach(players, function(player) {
-          if (player.id === id) player.role = 'dealer';
-          return id;
+          if (player.id === dealerId) {
+            player.role = 'dealer';
+            matchConfig.dealer = id;
+          }
         });
-
-        return -1;
       }
 
       function start(name, num) {
         setHuman(name);
         setPlayerNum(num);
         setPlayers();
-        setDealer(Math.ceil(Math.random() * 4));
+        setDealer();
+        BettingSystem.use();
+        Config.setMatch(matchConfig);
       }
 
       function resume(name, num) {
-        if (matchConfig === null) start(name, num);
+        if (Config.getConfig() === null) {
+          start(name, num);
+          return;
+        }
 
-        start(matchConfig.humanName, matchConfig.playerNum);
+        Player.setPlayers(Config.getConfig().players);
+        BettingSystem.use();
       }
 
 
