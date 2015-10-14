@@ -5,28 +5,50 @@
     .module('blackjack')
     .factory('Player', [function() {
       var playerList = [];
+      var nameList = ['Socrtes', 'Plato', 'Aristotle', 'Thales'];
 
       return {
         create: create,
         udpate: update,
         remove: remove,
-        get: get
+        get: get,
+        getPlayers: getPlayers,
+        getNames: getNames
       };
 
-      function create() {
-
+      function create(name, role) {
+        var gamer = new Gamer(name, role);
+        playerList.push(gamer);
+        return gamer;
       }
 
-      function update() {
-
+      function update(id, info) {
+        var user = get(id);
+        return angular.extend({}, user, info);
       }
 
-      function remove() {
+      function remove(id) {
+        angular.forEach(playerList, function(player, index) {
+          if (playerList[id] === id) playerList.splice(index, 1);
 
+          return -1;
+        });
       }
 
-      function get() {
+      function get(id) {
+        angular.forEach(playerList, function(player) {
+          if (playerList[id] === id) return player;
+        });
 
+        throw new Error('Can not find player with this id.');
+      }
+
+      function getPlayers() {
+        return playerList;
+      }
+
+      function getNames() {
+        return nameList;
       }
 
       function Gamer(name, role) {

@@ -5,42 +5,61 @@
     .module('blackjack')
     .factory('Match', ['Config', 'System', 'Player', 'Board', 'Card', function(Conig, System, Player, Board, Card) {
 
-      var id = new Date().getTime();
-      var games = [];
-      var playerNum;
-      var players = [];
+      var matchConfig = {};
+      matchConfig.id = new Date().getTime();
+      matchConfig.games = [];
+      matchConfig.humanName = '';
+      matchConfig.playerNum = 0;
 
       return {
-        setPlayerNum: setPlayerNum,
-        setDealer: setDealer,
         setHuman: setHuman,
+        setPlayerNum: setPlayerNum,
         setPlayers: setPlayers,
+        setDealer: setDealer,
         start: start,
         resume: resume
       };
 
-      function setPlayerNum() {
-
+      function setHuman(name) {
+        return matchConfig.humanName = name;
       }
 
-      function setDealer() {
-
-      }
-
-      function setHuman() {
-
+      function setPlayerNum(num) {
+        return matchConfig.playerNum = num;
       }
 
       function setPlayers() {
+        var name = Player.getNames();
+        var i;
+        Player.create(matchConfig.humanName, 'human');
 
+        for (i = 1; i < playerNum; i++) {
+          Player.create(name[i-1], 'computer');
+        }
       }
 
-      function start() {
+      function setDealer(id) {
+        var players = Player.getPlayers();
 
+        angular.forEach(players, function(player) {
+          if (player.id === id) player.role = 'dealer';
+          return id;
+        });
+
+        return -1;
       }
 
-      function resume() {
+      function start(name, num) {
+        setHuman(name);
+        setPlayerNum(num);
+        setPlayers();
+        setDealer(Math.ceil(Math.random() * 4));
+      }
 
+      function resume(name, num) {
+        if (matchConfig === null) start(name, num);
+
+        start(matchConfig.humanName, matchConfig.playerNum);
       }
 
 
